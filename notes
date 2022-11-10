@@ -1,0 +1,30 @@
+I wanted to create a travel planning app that allows you to organize some information for an upcoming trip. I wanted each trip page to have the destination, dates, a packing list and a list of things to do. So what I came up with was 3 different models like so:
+
+https://stackoverflow.com/questions/28293835/how-to-add-a-date-attribute-in-rails-models
+
+
+Trip
+    has_many :packing_items
+    has_many :things_to_do
+
+:desination - string
+:start_date - date?
+:end_date - date
+
+rails g resource Trip destination:string start_date:date end_date:date --no-test-framework
+
+Packing Items
+    belongs_to :trip
+
+:trip_id - integer
+:item - string
+
+rails g resource PackingItem trip_id:integer item:string --no-test-framework
+
+Itinerary Items
+    belongs_to :trip
+
+:trip_id - integer
+:description - string
+
+rails g resource ItineraryItem trip_id:integer description:string --no-test-framework
